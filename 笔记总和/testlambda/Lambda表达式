@@ -1,0 +1,37 @@
+在jdk1.8之前我们想在函数中使用行为只能用匿名内部类，而匿名内部类代码臃肿繁琐，就可以使用Lambda表达式简化操作
+
+匿名内部类代码：
+	dao.queryStudentByAge(stuList,new MyBase<Student>() {
+			@Override
+			public boolean test(Student obj) {
+				return 18<obj.getAge();
+			}
+
+		});
+-------------------------------------------------------------------------------------
+	
+Lambda表达式代码：
+		dao.queryStudentByAge(stuList, (obj)->{return 18<((Student)obj).getAge();});
+
+
+Lambda语法：
+	如果接口中的方法没有参数：()->{语句块;}
+	如果接口中的方法有参数：(obj)->{语句块;}
+	
+注意：
+	前提：接口是函数式接口
+		函数式接口(Functional Interface)：有且仅有一个抽象方法，可以有多个静态方法和默认方法
+	①方法中有多个参数是可以这样写：	(a,b)->{语句块;}
+	②花括号中的每段代码使用“;”隔开
+	③如果方法中只有一个参数圆括号可以省略
+	④如果花括号中只有一行代码,分号和花括号可以省略，如果有return,return也可以省略
+	dao.queryStudentByAge(stuList, (obj)->{return 18<((Student)obj).getAge();});
+	dao.queryStudentByAge(stuList, obj->18<((Student)obj).getAge());
+	
+
+jdk1.8之后，可以省略策略接口	
+
+//		list.stream()：返回集合的迭代形式，类似于list.iterator()
+//		list.stream().filter(obj->18<((Student)obj).getAge());//根据方法的描述过滤集合中的数据,返回满足条件的数据
+//		collect(Collection c):返回参数中的集合类型
+		List<Student> list_stu=(List) list.stream().filter(obj->18<((Student)obj).getAge()).collect(Collectors.toList());//以集合的形式输出数据	

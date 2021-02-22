@@ -1,0 +1,9 @@
+2、定义一个矩形类Rectangle： [必做题]
+2.1  定义三个方法：getArea()求面积、getPer()求周长，showAll()分别在控制台输出长、宽、面积、周长。
+2.2  有2个属性：长length、宽width
+2.3  通过构造方法Rectangle(int width, int length)，分别给两个属性赋值
+2.4  创建一个Rectangle对象，并输出相关信息
+
+
+1、设计一个类Student，该类包括姓名、学号和成绩。设计一个方法，按照成绩从高到低的顺序输出姓名、学号和成绩信息。[选做题]
+
